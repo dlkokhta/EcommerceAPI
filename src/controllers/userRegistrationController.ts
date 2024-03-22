@@ -4,7 +4,9 @@ import { Request, Response } from "express";
 
 const userRegistrationController = async (req: Request, res: Response) => {
     try{
-        const { name, email, password } = req.body;
+        const { name, email, password,  } = req.body;
+
+        // if(password !== )
 
         const newUser = new userRegistrationModel({ name, email, password });
         newUser.save();

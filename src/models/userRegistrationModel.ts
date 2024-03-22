@@ -17,10 +17,7 @@ const userRegistrationSchema = new Schema<UserRegistrationTypes>({
         type: String,
         required: true
     },
-    confirmPassword: {
-        type: String,
-        required: true
-    },
+   
     id: {
         type: String,
         default: uuid()
