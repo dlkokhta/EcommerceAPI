@@ -12,9 +12,12 @@ const userRegistrationController = async (req: Request, res: Response) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    console.log("hashedPassword",hashedPassword)
 
-    const newUser = new userRegistrationModel({ name, email, password:hashedPassword });
+    const newUser = new userRegistrationModel({
+      name,
+      email,
+      password: hashedPassword,
+    });
     newUser.save();
     return res.status(201).json("user registered succesfully");
   } catch (error) {
