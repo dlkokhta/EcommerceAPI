@@ -2,10 +2,15 @@ import userRegistrationModel from "models/userRegistrationModel";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import userLoginSchema from "schemas/userLoginSchema";
 
 const userLoginController = async (req: Request, res: Response) => {
   try {
     const userData = req.body;
+
+    const { error } = userLoginSchema.validate(userData);
+
+    if (error) return res.status(401).json(error.details[0].message);
 
     const user = await userRegistrationModel
       .findOne({ email: userData.email })
