@@ -27,6 +27,7 @@ const userLoginController = async (req: Request, res: Response) => {
       };
 
       const token = jwt.sign(signData, process.env.JWT_SECRET!);
+
       return res.status(200).json({ ...signData, token });
     }
   } catch (error) {
