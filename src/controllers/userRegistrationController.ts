@@ -5,6 +5,7 @@ import userRegistrationSchema from "schemas/userRegistrationSchema";
 
 const userRegistrationController = async (req: Request, res: Response) => {
   const { body } = req;
+  console.log("body", body);
 
   if (body.password !== body.repeatPassword) {
     return res.status(401).json("passwords do not match");

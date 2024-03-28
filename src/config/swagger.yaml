@@ -8,12 +8,12 @@ servers:
   - url: http://localhost:3000
     description: local server
 
-# components:
-#   securitySchemes:
-#     bearerAuth:
-#       type: http
-#       scheme: bearer
-#       bearerFormat: JWT
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 paths:
   /api/register:
@@ -73,3 +73,62 @@ paths:
           description: Unauthorized, invalid credentials
         "500":
           description: Internal server error
+
+  /api/addItem:
+   post:
+    summary: Create a new blog
+    description: This endpoint allows you to create a new blog.
+    tags:
+      - Blogs
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              brand:
+                type: string
+                description: The title of the blog
+              model:
+                type: string
+                description: The description of the blog
+              color:
+                type: string
+                description: The color of the blog
+              description:
+                type: string
+                description: The content of the blog
+              price:
+                type: number
+                description: The price of the blog  
+              availability: 
+                type: boolean
+                description: The availability of the blog   
+              image:
+                type: array
+                items:
+                  type: string
+                  format: binary
+                description: Array of image files for the blog (accepted formats: png, jpg, jpeg)
+  
+              # image:
+              #   type: string
+              #   format: binary
+              #   description: The image file of the blog (accepted formats: png, jpg, jpeg)
+    responses:
+      '201':
+        description: Blog created successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The success message
+      '400':
+        description: Bad request
+      '500':
+        description: Internal server error
+
