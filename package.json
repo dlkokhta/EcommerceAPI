@@ -39,6 +39,7 @@
     "@types/uuid": "^9.0.8",
     "@types/yamljs": "^0.2.34",
     "babel-plugin-module-resolver": "^5.0.0",
+    "nodemon": "^3.1.0",
     "typescript": "^5.4.2"
   }
 }
