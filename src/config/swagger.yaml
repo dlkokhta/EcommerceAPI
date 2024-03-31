@@ -76,10 +76,10 @@ paths:
 
   /api/addItem:
    post:
-    summary: Create a new blog
-    description: This endpoint allows you to create a new blog.
+    summary: add a new item
+    description: This endpoint allows you to create a new item.
     tags:
-      - Blogs
+      - Add Item
     requestBody:
       required: true
       content:
@@ -89,36 +89,42 @@ paths:
             properties:
               brand:
                 type: string
-                description: The title of the blog
+                description: The title of the item
               model:
                 type: string
-                description: The description of the blog
+                description: The description of the item
               color:
                 type: string
-                description: The color of the blog
+                description: The color of the item
               description:
                 type: string
-                description: The content of the blog
+                description: The content of the item
               price:
                 type: number
-                description: The price of the blog  
-              availability: 
-                type: boolean
-                description: The availability of the blog   
+                description: The price of the item
+              sizes:
+                type: array  
+                items:
+                  type: string
+                description: Array of sizes available for the item
+              # availability: 
+              #   type: boolean
+              #   description: The availability of the item
+              #   default: true   
               image:
                 type: array
                 items:
                   type: string
                   format: binary
-                description: Array of image files for the blog (accepted formats: png, jpg, jpeg)
+                description: Array of image files for the item (accepted formats: png, jpg, jpeg)
   
               # image:
               #   type: string
               #   format: binary
-              #   description: The image file of the blog (accepted formats: png, jpg, jpeg)
+              #   description: The image file of the item (accepted formats: png, jpg, jpeg)
     responses:
       '201':
-        description: Blog created successfully
+        description: item created successfully
         content:
           application/json:
             schema:

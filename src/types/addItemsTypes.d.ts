@@ -4,7 +4,7 @@ export interface addItemsTypes {
   color: string;
   description: string;
   price: number;
-  //   sizes: string[];
+  sizes: string[];
   availability: boolean;
   image: string[];
   id: string;

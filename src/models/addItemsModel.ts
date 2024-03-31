@@ -1,4 +1,3 @@
-import { string } from "joi";
 import { Schema, model } from "mongoose";
 import { addItemsTypes } from "types/addItemsTypes.js";
 import { v4 as uuid } from "uuid";
@@ -26,13 +25,14 @@ const addItemShema = new Schema<addItemsTypes>({
     type: Number,
     required: true,
   },
-  //   sizes: {
-  //     type: [String],
-  //     required: true,
-  //   },
+  sizes: {
+    type: [String],
+    required: true,
+  },
   availability: {
     type: Boolean,
     required: true,
+    default: true,
   },
   image: {
     type: [String],

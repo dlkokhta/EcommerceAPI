@@ -7,9 +7,8 @@ const addItemsSchema = Joi.object<addItemsTypes>({
   color: Joi.string().min(3).max(15).required(),
   description: Joi.string().min(3).max(30).required(),
   price: Joi.number().required(),
-  // sizes: Joi.array().items(Joi.string()).required(),
-  availability: Joi.boolean().required(),
-  // image: Joi.string().required(),
+  sizes: Joi.string().required(),
+  availability: Joi.boolean(),
 });
 
 export default addItemsSchema;
