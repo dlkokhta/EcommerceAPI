@@ -7,6 +7,7 @@ import userLoginSchema from "schemas/userLoginSchema";
 const userLoginController = async (req: Request, res: Response) => {
   try {
     const userData = req.body;
+    // console.log("userData", userData);
 
     const { error } = userLoginSchema.validate(userData);
 
@@ -30,10 +31,11 @@ const userLoginController = async (req: Request, res: Response) => {
         email: user.email,
         userId: user.id,
       };
+      // console.log("signData", signData);
 
       const token = jwt.sign(signData, process.env.JWT_SECRET!);
 
-      return res.status(200).json({ ...signData, token });
+      return res.status(200).json({ ...signData, token, name: user.name });
     }
   } catch (error) {
     return res.status(401).json(error);

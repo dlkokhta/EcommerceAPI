@@ -5,18 +5,18 @@ info:
   version: 0.1.9
 
 servers:
-  - url: https://ecommerceapi-production-844a.up.railway.app/
-    description: production server
+  # - url: https://ecommerceapi-production-844a.up.railway.app/
+  #   description: production server
   - url: http://localhost:3000
     description: local server
   
 
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+# components:
+#   securitySchemes:
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT
 
 paths:
   /api/register:
@@ -140,4 +140,29 @@ paths:
         description: Bad request
       '500':
         description: Internal server error
-
+  
+  /api/getAllShoes:
+    get:
+      tags:
+        - Auth
+      # security:
+      #   - bearerAuth: []
+      summary: Get all shoes
+      description: This endpoint allows you to get all shoes.
+      responses:
+        '200':
+          description: Shoes ogs retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        '500':
+          description: Internal server error
+  
+      
+  
+      

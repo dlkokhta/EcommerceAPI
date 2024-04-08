@@ -4,7 +4,7 @@ import addItemsSchema from "schemas/addItemsSchema";
 
 const addItemsController = async (req: Request, res: Response) => {
   const { files, body } = req;
-  console.log("body.sizes!!!", body.sizes);
+  // console.log("body.sizes!!!", body.sizes);
 
   try {
     const validator = addItemsSchema.validate(body);
@@ -14,7 +14,7 @@ const addItemsController = async (req: Request, res: Response) => {
     if (error) {
       return res.status(401).json(error.details);
     }
-    console.log("error!!!", error);
+    // console.log("error!!!", error);
 
     // Create an array to store image filenames
     const imageFilenames = [];
@@ -37,7 +37,7 @@ const addItemsController = async (req: Request, res: Response) => {
       image: imageFilenames,
       availability: true,
     });
-    console.log("newItem!!!", newItem);
+    // console.log("newItem!!!", newItem);
 
     // Save the item to the database
     await newItem.save();

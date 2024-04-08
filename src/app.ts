@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/api", eCommerceRouter);
-
+app.use("/public", express.static("public"));
 app.use("/", ...swaggerMiddleware());
 
 app.listen(process.env.PORT || 3000);

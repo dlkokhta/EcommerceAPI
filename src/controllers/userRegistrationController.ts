@@ -30,7 +30,9 @@ const userRegistrationController = async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
     });
+
     newUser.save();
+
     return res.status(201).json("user registered succesfully");
   } catch (error) {
     return res.status(401).json(error);

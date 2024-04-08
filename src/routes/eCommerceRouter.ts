@@ -4,6 +4,7 @@ import userLoginController from "../controllers/userLoginController.js";
 import addItemsController from "../controllers/addItemsController.js";
 const eCommerceRouter = express.Router();
 import multer from "multer";
+import getAllShoes from "../controllers/getAllShoes.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -34,5 +35,6 @@ eCommerceRouter.post(
 
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
+eCommerceRouter.get("/getAllShoes", getAllShoes);
 
 export default eCommerceRouter;
