@@ -144,9 +144,8 @@ paths:
   /api/getAllShoes:
     get:
       tags:
-        - Auth
-      # security:
-      #   - bearerAuth: []
+        - Get all shoes
+     
       summary: Get all shoes
       description: This endpoint allows you to get all shoes.
       responses:
@@ -164,5 +163,54 @@ paths:
           description: Internal server error
   
       
-  
-      
+  /api/shoesById/{id}:
+    get:
+      summary: Get a blog by id
+      description: This endpoint allows you to get a blog by id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The id of the blog
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Blog retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+
+
+  /api/postCart:
+    post:
+      # security:
+      #   - bearerAuth: []
+      tags:
+        - postCart
+      summary: Save item to cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The ID of the user
+                  example: "123456"
+                id:
+                  type: []
+                  description: The ID of the item to be added to cart
+                  example: "789012"
+      responses:
+        "200":
+          description: item added successfully
+        "401":
+          description: Unauthorized - Title not found or item already exists 

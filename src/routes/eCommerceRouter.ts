@@ -5,6 +5,8 @@ import addItemsController from "../controllers/addItemsController.js";
 const eCommerceRouter = express.Router();
 import multer from "multer";
 import getAllShoes from "../controllers/getAllShoes.js";
+import getShoesById from "../controllers/getShoesById.js";
+import postCartItems from "../controllers/postCartItems.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -19,7 +21,9 @@ const fileFilter = (_: any, files: any, cb: any) => {
   if (
     files.mimetype === "image/png" ||
     files.mimetype === "image/jpg" ||
-    files.mimetype === "image/jpeg"
+    files.mimetype === "image/jpeg" ||
+    files.mimetype === "image/webp" ||
+    files.mimetype === "image/avif"
   ) {
     cb(null, true);
   } else {
@@ -36,5 +40,7 @@ eCommerceRouter.post(
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
+eCommerceRouter.get("/shoesById/:id", getShoesById);
+eCommerceRouter.post("/postCart", postCartItems);
 
 export default eCommerceRouter;
