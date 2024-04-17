@@ -13,6 +13,11 @@ const cartItemsSchema = new Schema<cartItemsTypes>({
     required: true,
     default: [],
   },
+  size: {
+    type: [String],
+    required: true,
+    default: [],
+  },
 });
 
 const cartItemsModel = model<cartItemsTypes>("cartItemsModel", cartItemsSchema);

@@ -209,6 +209,10 @@ paths:
                   type: []
                   description: The ID of the item to be added to cart
                   example: "789012"
+                size:
+                  type: []
+                  description: The size of the item to be added to cart
+                  example: "us10"  
       responses:
         "200":
           description: item added successfully

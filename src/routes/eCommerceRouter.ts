@@ -42,6 +42,6 @@ eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
 eCommerceRouter.get("/shoesById/:id", getShoesById);
-eCommerceRouter.post("/postCart", verifyToken, postCartItems);
+eCommerceRouter.post("/postCart", postCartItems);
 
 export default eCommerceRouter;
