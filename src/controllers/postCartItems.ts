@@ -2,22 +2,25 @@ import { Request, Response } from "express";
 import cartItemsModel from "../models/cartItemsModel.js";
 
 const postCartItems = async (req: Request, res: Response) => {
-  const { email, id, size } = req.body;
-  console.log("req bodyyyy!!", email, id, size);
+  const { email, cartItems } = req.body;
+  const { itemId, size, quantity } = cartItems[0];
 
   try {
     let cartItem = await cartItemsModel.findOne({ email: email });
-
+    console.log("cartItem!!!!", cartItem);
     if (cartItem) {
-      cartItem.cartItems.push(id);
-      cartItem.size.push(size);
+      cartItem.cartItems.push({
+        itemId: itemId,
+        size: size,
+        quantity: quantity,
+      });
       await cartItem.save();
     } else {
       cartItem = new cartItemsModel({
         email: email,
-        cartItems: [id],
-        size: [size],
+        cartItems: [{ itemId: itemId, size: size, quantity: quantity }],
       });
+
       await cartItem.save();
     }
     res.status(200).json({ message: "Cart item added successfully" });

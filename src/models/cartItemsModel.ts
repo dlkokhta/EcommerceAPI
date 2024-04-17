@@ -1,7 +1,14 @@
 import { Schema, model } from "mongoose";
 import { cartItemsTypes } from "../types/cartItemsTypes";
+import { v4 as uuid } from "uuid";
 
 const { String } = Schema.Types;
+
+const cartItemSchema = new Schema({
+  itemId: { type: String, required: true },
+  size: { type: String, required: true },
+  quantity: { type: Number, required: true },
+});
 
 const cartItemsSchema = new Schema<cartItemsTypes>({
   email: {
@@ -9,14 +16,14 @@ const cartItemsSchema = new Schema<cartItemsTypes>({
     required: true,
   },
   cartItems: {
-    type: [String],
+    type: [cartItemSchema],
     required: true,
-    default: [],
   },
-  size: {
-    type: [String],
+
+  id: {
+    type: String,
     required: true,
-    default: [],
+    default: uuid(),
   },
 });
 

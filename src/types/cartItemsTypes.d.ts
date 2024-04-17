@@ -1,5 +1,11 @@
+interface CartItem {
+  itemId: string;
+  size: string;
+  quantity: number;
+}
+
 export interface cartItemsTypes {
   email: string;
-  cartItems: Array;
-  size: Array;
+  cartItems: CartItem[];
+  id: string;
 }
