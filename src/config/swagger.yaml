@@ -186,6 +186,8 @@ paths:
                     type: string
                     description: The success message
 
+
+
   /api/getCartItems:
     get:
       tags:
@@ -207,8 +209,6 @@ paths:
         '500':
           description: Internal server error
 
-
-
   /api/postCart:
    post:
     tags:
@@ -220,29 +220,30 @@ paths:
         application/json:
           schema:
             type: object
-properties:
-  email:
-    type: string
-    description: The ID of the user
-    example: "123456"
-  cartItems:
-    type: array
-    items:
-      type: object
-      properties:
-        itemId:
-          type: string
-          description: The ID of the item to be added to cart
-          example: "789012"
-        size:
-          type: string
-          description: The size of the item to be added to cart
-          example: "us10"
-        quantity:
-          type: number
-          description: The quantity of the item to be added to cart
-          example: 1
-
-
-
-  
+            properties:
+              email:
+                type: string
+                description: The ID of the user
+                example: "123456"
+              cartItems:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    itemId:
+                      type: string
+                      description: The ID of the item to be added to cart
+                      example: "789012"
+                    size:
+                      type: string
+                      description: The size of the item to be added to cart
+                      example: "us10"
+                    quantity:
+                      type: number
+                      description: The quantity of the item to be added to cart
+                      example: 1
+    responses:
+      "200":
+        description: Item added successfully
+      "401":
+        description: Unauthorized - Title not found or item already exists
