@@ -4,6 +4,7 @@ import cartItemsModel from "../models/cartItemsModel.js";
 const postCartItems = async (req: Request, res: Response) => {
   const { email, cartItems } = req.body;
   const { itemId, size, quantity } = cartItems[0];
+  console.log("req bodyyyy!!", email, itemId, size, quantity);
 
   try {
     let cartItem = await cartItemsModel.findOne({ email: email });

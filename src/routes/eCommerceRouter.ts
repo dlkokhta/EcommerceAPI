@@ -8,6 +8,7 @@ import getAllShoes from "../controllers/getAllShoes.js";
 import getShoesById from "../controllers/getShoesById.js";
 import postCartItems from "../controllers/postCartItems.js";
 import verifyToken from "../middlewears/auth-middleware.js";
+import getCartItems from "../controllers/getCartItems.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -43,5 +44,6 @@ eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
 eCommerceRouter.get("/shoesById/:id", getShoesById);
 eCommerceRouter.post("/postCart", postCartItems);
+eCommerceRouter.get("/getCartItems", getCartItems);
 
 export default eCommerceRouter;
