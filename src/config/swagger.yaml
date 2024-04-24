@@ -143,6 +143,8 @@ paths:
   
   /api/getAllShoes:
     get:
+      security:
+        - bearerAuth: [] 
       tags:
         - Get all shoes
      
@@ -188,13 +190,21 @@ paths:
 
 
 
-  /api/getCartItems:
+  /api/getCartItems/{email}:
     get:
+      # security:
+      #   - bearerAuth: []
       tags:
         - Get Cart Items
-     
       summary: Get Cart Items
       description: This endpoint allows you to get cart items.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          description: The email of the blog
+          schema:
+            type: string
       responses:
         '200':
           description: items ogs retrieved successfully
@@ -224,7 +234,7 @@ paths:
               email:
                 type: string
                 description: The ID of the user
-                example: "123456"
+                example: "example@mail.com"
               cartItems:
                 type: array
                 items:
@@ -247,3 +257,4 @@ paths:
         description: Item added successfully
       "401":
         description: Unauthorized - Title not found or item already exists
+     
