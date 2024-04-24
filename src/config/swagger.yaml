@@ -5,8 +5,8 @@ info:
   version: 0.1.9
 
 servers:
-  # - url: https://ecommerceapi-production-844a.up.railway.app/
-  #   description: production server
+  - url: https://ecommerceapi-production-844a.up.railway.app/
+    description: production server
   - url: http://localhost:3000
     description: local server
   
