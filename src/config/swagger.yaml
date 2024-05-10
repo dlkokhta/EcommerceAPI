@@ -5,8 +5,8 @@ info:
   version: 0.1.9
 
 servers:
-  # - url: https://ecommerceapi-production-844a.up.railway.app/
-  #   description: production server
+  - url: https://ecommerceapi-production-844a.up.railway.app
+    description: production server
   - url: http://localhost:3000
     description: local server
   
@@ -165,28 +165,28 @@ paths:
           description: Internal server error
   
       
-  /api/shoesById/{id}:
-    get:
-      summary: Get a blog by id
-      description: This endpoint allows you to get a blog by id.
-      parameters:
-        - in: path
-          name: id
-          required: true
-          description: The id of the blog
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Blog retrieved successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The success message
+  # /api/shoesById/{id}:
+  #   get:
+  #     summary: Get a shoes by id
+  #     description: This endpoint allows you to get a shoes by id.
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         required: true
+  #         description: The id of the blog
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '200':
+  #         description: shoes retrieved successfully
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  #                   description: The success message
 
 
 

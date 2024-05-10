@@ -5,7 +5,7 @@ import addItemsController from "../controllers/addItemsController.js";
 const eCommerceRouter = express.Router();
 import multer from "multer";
 import getAllShoes from "../controllers/getAllShoes.js";
-import getShoesById from "../controllers/getShoesById.js";
+// import getShoesById from "../controllers/getShoesById.js";
 import postCartItems from "../controllers/postCartItems.js";
 import verifyToken from "../middlewears/auth-middleware.js";
 import getCartItems from "../controllers/getCartItems.js";
@@ -42,7 +42,7 @@ eCommerceRouter.post(
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
-eCommerceRouter.get("/shoesById/:id", getShoesById);
+// eCommerceRouter.get("/shoesById/:id", getShoesById);
 eCommerceRouter.post("/postCart", postCartItems);
 eCommerceRouter.get("/getCartItems/:email", getCartItems);
 
