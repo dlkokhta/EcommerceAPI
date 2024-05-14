@@ -7,7 +7,7 @@ import multer from "multer";
 import getAllShoes from "../controllers/getAllShoes.js";
 // import getShoesById from "../controllers/getShoesById.js";
 import postCartItems from "../controllers/postCartItems.js";
-import verifyToken from "../middlewears/auth-middleware.js";
+// import verifyToken from "../middlewears/auth-middleware.js";
 import getCartItems from "../controllers/getCartItems.js";
 
 const fileStorage = multer.diskStorage({
