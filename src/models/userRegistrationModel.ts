@@ -20,7 +20,7 @@ const userRegistrationSchema = new Schema<UserRegistrationTypes>({
 
   role: {
     type: String,
-    enum: ["user", "admin"],
+    required: true,
     default: "user",
   },
 

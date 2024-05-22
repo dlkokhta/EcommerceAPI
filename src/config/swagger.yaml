@@ -43,12 +43,12 @@ paths:
                 repeatPassword:
                   type: string
                   description: The repeated password of the user
-                role:
-                  type: string
-                  description: The role of the user
-                  enum: [user, admin]
-                  default: user
-                  example: user  
+                # role:
+                #   type: string
+                #   description: The role of the user
+                #   enum: [user, admin]
+                #   default: user
+                #   example: user  
       responses:
         "200":
           description: User successfully added to the database

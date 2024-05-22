@@ -20,7 +20,7 @@ const userRegistrationSchema = async (data: newUserTypes) => {
     email: Joi.string().email().custom(ifUserExist(user)).required(),
     password: Joi.string().min(8).max(15).required(),
     repeatPassword: Joi.string().min(8).max(15).required(),
-    role: Joi.string().valid("user", "admin").required(),
+    role: Joi.string(),
   });
 };
 
