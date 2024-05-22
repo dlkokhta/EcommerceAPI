@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 const verifyToken = (req: Request, res: Response, next: any) => {
   const { authorization } = req.headers;
-  console.log("authorization1111111111111111111111111", authorization);
+  console.log("authorization!", authorization);
 
   if (!authorization) {
     return res.status(401).json({ error: "Authorization header missing" });
@@ -20,7 +20,6 @@ const verifyToken = (req: Request, res: Response, next: any) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET!);
     if (verified) {
       console.log("verifiesUser!!!");
-
       next();
     }
   } catch (error) {
