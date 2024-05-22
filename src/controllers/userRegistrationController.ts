@@ -20,7 +20,7 @@ const userRegistrationController = async (req: Request, res: Response) => {
       return res.status(401).json(error.details);
     }
 
-    const { name, email } = value;
+    const { name, email, role } = value;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(body.password, salt);
@@ -29,7 +29,10 @@ const userRegistrationController = async (req: Request, res: Response) => {
       name,
       email,
       password: hashedPassword,
+      role,
     });
+
+    console.log("newUser", newUser);
 
     newUser.save();
 

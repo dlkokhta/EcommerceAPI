@@ -3,4 +3,5 @@ export interface newUserTypes {
   email: string;
   password: string;
   repeatPassword: string;
+  role: "user" | "admin";
 }
