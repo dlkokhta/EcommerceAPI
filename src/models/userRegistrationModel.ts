@@ -18,6 +18,12 @@ const userRegistrationSchema = new Schema<UserRegistrationTypes>({
     required: true,
   },
 
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+  },
+
   id: {
     type: String,
     default: uuid(),

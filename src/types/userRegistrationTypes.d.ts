@@ -3,5 +3,6 @@ export interface UserRegistrationTypes {
   email: string;
   password: string;
   repeatPassword: string;
+  role: "user" | "admin";
   id: string;
 }
