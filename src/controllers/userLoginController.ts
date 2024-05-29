@@ -11,6 +11,10 @@ const userLoginController = async (req: Request, res: Response) => {
 
     const { error } = userLoginSchema.validate(userData);
 
+    // if (error) {
+    //   console.log("error1", error?.details[0].message);
+    // }
+
     if (error) return res.status(401).json(error.details[0].message);
 
     const user = await userRegistrationModel
@@ -18,7 +22,7 @@ const userLoginController = async (req: Request, res: Response) => {
       .select("+password");
 
     if (!user) {
-      return res.status(401).json("user with this email did not fined");
+      return res.status(401).json("email or password is wrong");
     }
 
     const isPasswordCorrect = await bcrypt.compare(
@@ -26,17 +30,17 @@ const userLoginController = async (req: Request, res: Response) => {
       user.password
     );
 
-    if (isPasswordCorrect) {
-      const signData = {
-        email: user.email,
-        userId: user.id,
-      };
-      // console.log("signData", signData);
+    const signData = {
+      email: user.email,
+      userId: user.id,
+    };
 
-      const token = jwt.sign(signData, process.env.JWT_SECRET!);
+    if (!isPasswordCorrect || !user)
+      return res.status(401).json("email or password is wrong");
 
-      return res.status(200).json({ ...signData, token, name: user.name });
-    }
+    const token = jwt.sign(signData, process.env.JWT_SECRET!);
+
+    return res.status(200).json({ ...signData, token, name: user.name });
   } catch (error) {
     return res.status(401).json(error);
   }
