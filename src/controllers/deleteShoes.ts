@@ -10,10 +10,11 @@ const DeleteShoes = async (req: Request, res: Response) => {
     if (findUser) {
       // Filter out the item with the specified itemId
       findUser.cartItems = findUser.cartItems.filter(
-        (item) => item.itemId !== itemId
+        (item: any) => item._id.toString() !== itemId
       );
 
       findUser.save();
+      console.log("findUser", findUser.cartItems);
     }
 
     res.send(findUser);

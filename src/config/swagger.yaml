@@ -282,7 +282,7 @@ paths:
         required: true
         description: The item ID of the shoe
         schema:
-          type: string  
+          type: ObjectId
     responses:
       '200':
         description: Item deleted successfully
