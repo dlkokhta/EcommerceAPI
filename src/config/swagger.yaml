@@ -263,4 +263,38 @@ paths:
         description: Item added successfully
       "401":
         description: Unauthorized - Title not found or item already exists
+
+  /api/deleteShoes/{email}/{itemId}:
+   delete:
+    tags:
+      - Delete Shoes
+    summary: Delete Shoes
+    description: Deletes a shoe item based on the user's email and item ID
+    parameters:
+      - in: path
+        name: email
+        required: true
+        description: The email of the user
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        description: The item ID of the shoe
+        schema:
+          type: string  
+    responses:
+      '200':
+        description: Item deleted successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The success message
+      '500':
+        description: Internal server error
+
      
