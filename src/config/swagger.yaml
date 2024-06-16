@@ -102,6 +102,9 @@ paths:
               model:
                 type: string
                 description: The description of the item
+              gender:
+                type: string
+                description: The gender of the item
               color:
                 type: string
                 description: The color of the item
