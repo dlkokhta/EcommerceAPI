@@ -4,7 +4,7 @@ import addItemsSchema from "schemas/addItemsSchema";
 
 const addItemsController = async (req: Request, res: Response) => {
   const { files, body } = req;
-  // console.log("body.sizes!!!", body.sizes);
+  console.log("body.sizes!!!", body.sizes);
 
   try {
     const validator = addItemsSchema.validate(body);
