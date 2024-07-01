@@ -1,6 +1,7 @@
 export interface addItemsTypes {
   brand: string;
   model: string;
+  isShoesNew: boolean;
   gender: string;
   color: string;
   description: string;

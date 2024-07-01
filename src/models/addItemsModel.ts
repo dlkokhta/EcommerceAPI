@@ -13,6 +13,11 @@ const addItemShema = new Schema<addItemsTypes>({
     type: String,
     required: true,
   },
+  isShoesNew: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   gender: {
     type: String,
     required: true,
