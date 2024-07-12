@@ -9,7 +9,6 @@ servers:
     description: production server
   - url: http://localhost:3000
     description: local server
-  
 
 components:
   securitySchemes:
@@ -48,7 +47,7 @@ paths:
                 #   description: The role of the user
                 #   enum: [user, admin]
                 #   default: user
-                #   example: user  
+                #   example: user
       responses:
         "200":
           description: User successfully added to the database
@@ -84,83 +83,85 @@ paths:
           description: Internal server error
 
   /api/addItem:
-   post:
-    summary: add a new item
-    description: This endpoint allows you to create a new item.
-    tags:
-      - Add Item
-    requestBody:
-      required: true
-      content:
-        multipart/form-data:
-          schema:
-            type: object
-            properties:
-              brand:
-                type: string
-                description: The title of the item
-              model:
-                type: string
-                description: The description of the item
-              gender:
-                type: string
-                description: The gender of the item
-              color:
-                type: string
-                description: The color of the item
-              description:
-                type: string
-                description: The content of the item
-              price:
-                type: number
-                description: The price of the item
-              sizes:
-                type: array  
-                items:
-                  type: string
-                description: Array of sizes available for the item
-              # availability: 
-              #   type: boolean
-              #   description: The availability of the item
-              #   default: true   
-              image:
-                type: array
-                items:
-                  type: string
-                  format: binary
-                description: Array of image files for the item (accepted formats: png, jpg, jpeg)
-  
-              # image:
-              #   type: string
-              #   format: binary
-              #   description: The image file of the item (accepted formats: png, jpg, jpeg)
-    responses:
-      '201':
-        description: item created successfully
+    post:
+      security:
+        - bearerAuth: []
+      summary: add a new item
+      description: This endpoint allows you to create a new item.
+      tags:
+        - Add Item
+      requestBody:
+        required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                message:
+                brand:
                   type: string
-                  description: The success message
-      '400':
-        description: Bad request
-      '500':
-        description: Internal server error
-  
+                  description: The title of the item
+                model:
+                  type: string
+                  description: The description of the item
+                gender:
+                  type: string
+                  description: The gender of the item
+                color:
+                  type: string
+                  description: The color of the item
+                description:
+                  type: string
+                  description: The content of the item
+                price:
+                  type: number
+                  description: The price of the item
+                sizes:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of sizes available for the item
+                # availability:
+                #   type: boolean
+                #   description: The availability of the item
+                #   default: true
+                image:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Array of image files for the item (accepted formats: png, jpg, jpeg)
+
+                # image:
+                #   type: string
+                #   format: binary
+                #   description: The image file of the item (accepted formats: png, jpg, jpeg)
+      responses:
+        "201":
+          description: item created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+
   /api/getAllShoes:
     get:
       security:
-        - bearerAuth: [] 
+        - bearerAuth: []
       tags:
         - Get all shoes
-     
+
       summary: Get all shoes
       description: This endpoint allows you to get all shoes.
       responses:
-        '200':
+        "200":
           description: Shoes ogs retrieved successfully
           content:
             application/json:
@@ -170,10 +171,9 @@ paths:
                   message:
                     type: string
                     description: The success message
-        '500':
+        "500":
           description: Internal server error
-  
-      
+
   # /api/shoesById/{id}:
   #   get:
   #     summary: Get a shoes by id
@@ -197,12 +197,10 @@ paths:
   #                   type: string
   #                   description: The success message
 
-
-
   /api/getCartItems/{email}:
     get:
-      # security:
-      #   - bearerAuth: []
+      security:
+        - bearerAuth: []
       tags:
         - Get Cart Items
       summary: Get Cart Items
@@ -215,7 +213,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: items ogs retrieved successfully
           content:
             application/json:
@@ -225,79 +223,77 @@ paths:
                   message:
                     type: string
                     description: The success message
-        '500':
+        "500":
           description: Internal server error
 
   /api/postCart:
-   post:
-    tags:
-      - postCart
-    summary: Save item to cart
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              email:
-                type: string
-                description: The ID of the user
-                example: "example@mail.com"
-              cartItems:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    itemId:
-                      type: string
-                      description: The ID of the item to be added to cart
-                      example: "789012"
-                    size:
-                      type: string
-                      description: The size of the item to be added to cart
-                      example: "us10"
-                    quantity:
-                      type: number
-                      description: The quantity of the item to be added to cart
-                      example: 1
-    responses:
-      "200":
-        description: Item added successfully
-      "401":
-        description: Unauthorized - Title not found or item already exists
-
-  /api/deleteShoes/{email}/{itemId}:
-   delete:
-    tags:
-      - Delete Shoes
-    summary: Delete Shoes
-    description: Deletes a shoe item based on the user's email and item ID
-    parameters:
-      - in: path
-        name: email
+    post:
+      tags:
+        - postCart
+      summary: Save item to cart
+      requestBody:
         required: true
-        description: The email of the user
-        schema:
-          type: string
-      - in: path
-        name: itemId
-        required: true
-        description: The item ID of the shoe
-        schema:
-          type: ObjectId
-    responses:
-      '200':
-        description: Item deleted successfully
         content:
           application/json:
             schema:
               type: object
               properties:
-                message:
+                email:
                   type: string
-                  description: The success message
-      '500':
-        description: Internal server error
+                  description: The ID of the user
+                  example: "example@mail.com"
+                cartItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      itemId:
+                        type: string
+                        description: The ID of the item to be added to cart
+                        example: "789012"
+                      size:
+                        type: string
+                        description: The size of the item to be added to cart
+                        example: "us10"
+                      quantity:
+                        type: number
+                        description: The quantity of the item to be added to cart
+                        example: 1
+      responses:
+        "200":
+          description: Item added successfully
+        "401":
+          description: Unauthorized - Title not found or item already exists
 
-     
+  /api/deleteShoes/{email}/{itemId}:
+    delete:
+      tags:
+        - Delete Shoes
+      summary: Delete Shoes
+      description: Deletes a shoe item based on the user's email and item ID
+      parameters:
+        - in: path
+          name: email
+          required: true
+          description: The email of the user
+          schema:
+            type: string
+        - in: path
+          name: itemId
+          required: true
+          description: The item ID of the shoe
+          schema:
+            type: ObjectId
+      responses:
+        "200":
+          description: Item deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        "500":
+          description: Internal server error

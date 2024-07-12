@@ -10,6 +10,7 @@ import postCartItems from "../controllers/postCartItems.js";
 import verifyToken from "../middlewears/auth-middleware.js";
 import getCartItems from "../controllers/getCartItems.js";
 import deleteShoes from "../controllers/deleteShoes.js";
+import adminVerifyToken from "../middlewears/admin-auth-middleware.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -36,16 +37,17 @@ const fileFilter = (_: any, files: any, cb: any) => {
 
 eCommerceRouter.post(
   "/addItem",
+  adminVerifyToken,
   multer({ storage: fileStorage, fileFilter }).array("image", 5),
+
   addItemsController
 );
 
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
-// eCommerceRouter.get("/shoesById/:id", getShoesById);
-eCommerceRouter.post("/postCart", postCartItems);
-eCommerceRouter.get("/getCartItems/:email", getCartItems);
-eCommerceRouter.delete("/deleteShoes/:email/:itemId", deleteShoes);
+eCommerceRouter.post("/postCart", verifyToken, postCartItems);
+eCommerceRouter.get("/getCartItems/:email", verifyToken, getCartItems);
+eCommerceRouter.delete("/deleteShoes/:email/:itemId", verifyToken, deleteShoes);
 
 export default eCommerceRouter;

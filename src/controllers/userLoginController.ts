@@ -8,6 +8,7 @@ import { userLoginTypes } from "types/userLoginTypes";
 const userLoginController = async (req: Request, res: Response) => {
   try {
     const userData: userLoginTypes = req.body;
+    console.log("userdata", userData);
 
     const { error } = userLoginSchema.validate(userData);
 
@@ -37,8 +38,17 @@ const userLoginController = async (req: Request, res: Response) => {
       return res.status(401).json("Email or password is incorrect.");
 
     const token = jwt.sign(signData, process.env.JWT_SECRET!);
+    const adminToken = jwt.sign(signData, process.env.JWT_SECRET_ADMIN!);
 
-    return res.status(200).json({ ...signData, token, name: user.name });
+    console.log("adminToken", adminToken);
+
+    if (user.role === "admin") {
+      return res
+        .status(200)
+        .json({ ...signData, adminToken, name: user.name, role: user.role });
+    } else {
+      return res.status(200).json({ ...signData, token, name: user.name });
+    }
   } catch (error) {
     return res.status(401).json(error);
   }
