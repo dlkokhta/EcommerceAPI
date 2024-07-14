@@ -4,6 +4,7 @@ import cartItemsModel from "models/cartItemsModel";
 const DeleteShoes = async (req: Request, res: Response) => {
   try {
     const { email, itemId } = req.params;
+    console.log("itemId", itemId);
 
     const findUser = await cartItemsModel.findOne({ email: email });
 

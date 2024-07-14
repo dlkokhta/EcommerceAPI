@@ -10,6 +10,7 @@ const addItemsSchema = Joi.object<addItemsTypes>({
   price: Joi.number().required(),
   sizes: Joi.string(),
   image: Joi.string(),
+  id: Joi.string(),
   // availability: Joi.boolean(),
 });
 
