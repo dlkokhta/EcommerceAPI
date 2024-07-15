@@ -38,17 +38,16 @@ const userLoginController = async (req: Request, res: Response) => {
       return res.status(401).json("Email or password is incorrect.");
 
     const token = jwt.sign(signData, process.env.JWT_SECRET!);
-    const adminToken = jwt.sign(signData, process.env.JWT_SECRET_ADMIN!);
+    // const adminToken = jwt.sign(signData, process.env.JWT_SECRET_ADMIN!);
 
-    console.log("adminToken", adminToken);
+    // console.log("adminToken", adminToken);
 
-    if (user.role === "admin") {
-      return res
-        .status(200)
-        .json({ ...signData, token, name: user.name, role: user.role });
-    } else {
-      return res.status(200).json({ ...signData, token, name: user.name });
-    }
+    // if (user.role === "admin") {
+    //   return res
+    //     .status(200)
+    //     .json({ ...signData, token, name: user.name, role: user.role });
+    // } else {
+    return res.status(200).json({ ...signData, token, name: user.name });
   } catch (error) {
     return res.status(401).json(error);
   }
