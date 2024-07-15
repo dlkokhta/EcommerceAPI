@@ -45,7 +45,7 @@ const userLoginController = async (req: Request, res: Response) => {
     if (user.role === "admin") {
       return res
         .status(200)
-        .json({ ...signData, token, name: user.name, role: user.role });
+        .json({ ...signData, adminToken, name: user.name, role: user.role });
     } else {
       return res.status(200).json({ ...signData, token, name: user.name });
     }
