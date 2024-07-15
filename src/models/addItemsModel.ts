@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { addItemsTypes } from "types/addItemsTypes.js";
-import { v4 as uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const { String } = Schema.Types;
 
@@ -51,7 +51,7 @@ const addItemShema = new Schema<addItemsTypes>({
   id: {
     type: String,
     required: true,
-    default: uuid(),
+    default: () => uuidv4(),
   },
 });
 

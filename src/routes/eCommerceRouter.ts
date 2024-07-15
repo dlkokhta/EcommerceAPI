@@ -40,7 +40,6 @@ eCommerceRouter.post(
   "/addItem",
   adminVerifyToken,
   multer({ storage: fileStorage, fileFilter }).array("image", 5),
-
   addItemsController
 );
 
@@ -50,6 +49,10 @@ eCommerceRouter.get("/getAllShoes", getAllShoes);
 eCommerceRouter.post("/postCart", verifyToken, postCartItems);
 eCommerceRouter.get("/getCartItems/:email", verifyToken, getCartItems);
 eCommerceRouter.delete("/deleteShoes/:email/:itemId", verifyToken, deleteShoes);
-eCommerceRouter.delete("/deleteShoesByAdmin/:id", deleteShoesByAdmin);
+eCommerceRouter.delete(
+  "/deleteShoesByAdmin/:id",
+  adminVerifyToken,
+  deleteShoesByAdmin
+);
 
 export default eCommerceRouter;
