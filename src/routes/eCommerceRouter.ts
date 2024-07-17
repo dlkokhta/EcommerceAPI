@@ -42,7 +42,6 @@ eCommerceRouter.post(
   multer({ storage: fileStorage, fileFilter }).array("image", 5),
   addItemsController
 );
-
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
