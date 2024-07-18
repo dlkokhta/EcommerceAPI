@@ -12,6 +12,7 @@ import getCartItems from "../controllers/getCartItems.js";
 import deleteShoes from "../controllers/deleteShoes.js";
 import adminVerifyToken from "../middlewears/admin-auth-middleware.js";
 import deleteShoesByAdmin from "../controllers/deleteShoesByAdmin.js";
+import UsersListForAdminPanel from "../controllers/usersListForAdminPanel.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -53,5 +54,6 @@ eCommerceRouter.delete(
   adminVerifyToken,
   deleteShoesByAdmin
 );
+eCommerceRouter.get("/getAllUsers", UsersListForAdminPanel);
 
 export default eCommerceRouter;

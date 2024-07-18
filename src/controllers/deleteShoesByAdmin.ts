@@ -4,8 +4,8 @@ import addItemModel from "models/addItemsModel";
 const deleteShoesByAdmin = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log(id);
-    const deleteItem = await addItemModel.deleteOne({ id: id });
+
+    await addItemModel.deleteOne({ id: id });
 
     res.status(200).json({ message: "Shoe deleted successfully" });
   } catch (error) {

@@ -336,4 +336,25 @@ paths:
                   type: string
                   description: The error message
         
-       
+  /api/getAllUsers:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Get all users
+
+      summary: Get all users
+      description: This endpoint allows you to get all users.
+      responses:
+        "200":
+          description: users ogs retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        "500":
+          description: Internal server error     
