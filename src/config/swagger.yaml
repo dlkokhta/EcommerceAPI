@@ -357,4 +357,41 @@ paths:
                     type: string
                     description: The success message
         "500":
-          description: Internal server error     
+          description: Internal server error 
+
+  /api/deleteUserByAdmin/{id}:
+   delete:
+    tags:
+      - Delete User
+    summary: Delete User
+    description: Deletes a user item based on the item's ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: The item ID of the shoe
+        schema:
+          type: string
+    responses:
+      "204":
+        description: user deleted successfully
+      "404":
+        description: user not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: The error message
+      "500":
+        description: Internal server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  description: The error message            
