@@ -28,6 +28,11 @@ const userRegistrationSchema = new Schema<UserRegistrationTypes>({
     type: String,
     default: uuid(),
   },
+
+  userVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const userRegistrationModel = model<UserRegistrationTypes>(

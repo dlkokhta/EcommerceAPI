@@ -55,7 +55,11 @@ eCommerceRouter.delete(
   adminVerifyToken,
   deleteShoesByAdmin
 );
-eCommerceRouter.get("/getAllUsers", UsersListForAdminPanel);
-eCommerceRouter.delete("/deleteUserByAdmin/:id", deleteUserbyAdmin);
+eCommerceRouter.get("/getAllUsers", adminVerifyToken, UsersListForAdminPanel);
+eCommerceRouter.delete(
+  "/deleteUserByAdmin/:id",
+  adminVerifyToken,
+  deleteUserbyAdmin
+);
 
 export default eCommerceRouter;

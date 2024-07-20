@@ -3,8 +3,12 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import userRegistrationSchema from "schemas/userRegistrationSchema";
 import { newUserTypes } from "types/newUserTypes";
+import CryptoJS from "crypto-js";
 
 const userRegistrationController = async (req: Request, res: Response) => {
+  const randomString = CryptoJS.lib.WordArray.random(32).toString(
+    CryptoJS.enc.Hex
+  );
   try {
     const userData: newUserTypes = req.body;
     const validator = await userRegistrationSchema(userData);
@@ -27,7 +31,8 @@ const userRegistrationController = async (req: Request, res: Response) => {
       role,
     });
     newUser.save();
-    return res.status(201).json("user registered succesfully");
+
+    return res.status(201).json(newUser);
   } catch (error) {
     return res.status(401).json(error);
   }

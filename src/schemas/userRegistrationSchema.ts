@@ -26,6 +26,7 @@ const userRegistrationSchema = async (data: newUserTypes) => {
         "any.only": "Passwords must match",
       }),
     role: Joi.string(),
+    userVerified: Joi.string(),
   });
 };
 
