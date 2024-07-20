@@ -3,12 +3,12 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import userRegistrationSchema from "schemas/userRegistrationSchema";
 import { newUserTypes } from "types/newUserTypes";
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
 
 const userRegistrationController = async (req: Request, res: Response) => {
-  const randomString = CryptoJS.lib.WordArray.random(32).toString(
-    CryptoJS.enc.Hex
-  );
+  // const randomString = CryptoJS.lib.WordArray.random(32).toString(
+  //   CryptoJS.enc.Hex
+  // );
   try {
     const userData: newUserTypes = req.body;
     const validator = await userRegistrationSchema(userData);
