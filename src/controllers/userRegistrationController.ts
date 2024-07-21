@@ -3,12 +3,11 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import userRegistrationSchema from "schemas/userRegistrationSchema";
 import { newUserTypes } from "types/newUserTypes";
-// import CryptoJS from "crypto-js";
+import CryptoJS from "crypto-js";
+import userverifyModel from "models/userVerifyModel";
+import { sensitiveHeaders } from "../email/edge.js";
 
 const userRegistrationController = async (req: Request, res: Response) => {
-  // const randomString = CryptoJS.lib.WordArray.random(32).toString(
-  //   CryptoJS.enc.Hex
-  // );
   try {
     const userData: newUserTypes = req.body;
     const validator = await userRegistrationSchema(userData);
@@ -29,10 +28,29 @@ const userRegistrationController = async (req: Request, res: Response) => {
       email: email,
       password: hashedPassword,
       role,
+      userVerified: false,
     });
     newUser.save();
 
-    return res.status(201).json(newUser);
+    const randomString = CryptoJS.lib.WordArray.random(32).toString(
+      CryptoJS.enc.Hex
+    );
+
+    const userVerify = new userverifyModel({
+      email: email,
+      randomString: randomString,
+    });
+
+    userVerify.save();
+
+    await sensitiveHeaders(
+      newUser.email,
+      newUser.name,
+      `http://localhost:3000/verify?param=${randomString}`
+    );
+    return res
+      .status(201)
+      .json({ message: "User registered. Please verify your email." });
   } catch (error) {
     return res.status(401).json(error);
   }

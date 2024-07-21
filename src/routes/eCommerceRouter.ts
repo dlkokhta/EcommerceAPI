@@ -14,6 +14,7 @@ import adminVerifyToken from "../middlewears/admin-auth-middleware.js";
 import deleteShoesByAdmin from "../controllers/deleteShoesByAdmin.js";
 import UsersListForAdminPanel from "../controllers/usersListForAdminPanel.js";
 import deleteUserbyAdmin from "../controllers/deleteUserbyAdmin.js";
+import verifyUserController from "../controllers/verifyUserController .js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -61,5 +62,7 @@ eCommerceRouter.delete(
   adminVerifyToken,
   deleteUserbyAdmin
 );
+
+eCommerceRouter.put("/verify", verifyUserController);
 
 export default eCommerceRouter;
