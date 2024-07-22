@@ -15,6 +15,7 @@ import deleteShoesByAdmin from "../controllers/deleteShoesByAdmin.js";
 import UsersListForAdminPanel from "../controllers/usersListForAdminPanel.js";
 import deleteUserbyAdmin from "../controllers/deleteUserbyAdmin.js";
 import verifyUserController from "../controllers/verifyUserController .js";
+import checkEmailVerified from "../middlewears/emailVerify-auth-middleware.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -48,7 +49,7 @@ eCommerceRouter.post(
 eCommerceRouter.post("/register", userRegistrationController);
 eCommerceRouter.post("/login", userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
-eCommerceRouter.post("/postCart", verifyToken, postCartItems);
+eCommerceRouter.post("/postCart", checkEmailVerified, postCartItems);
 eCommerceRouter.get("/getCartItems/:email", verifyToken, getCartItems);
 eCommerceRouter.delete("/deleteShoes/:email/:itemId", verifyToken, deleteShoes);
 eCommerceRouter.delete(

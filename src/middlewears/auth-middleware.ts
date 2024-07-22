@@ -10,7 +10,7 @@ const verifyToken = (req: Request, res: Response, next: any) => {
   }
 
   let token = authorization.split(" ")[1];
-  console.log("token", token);
+  // console.log("token", token);
 
   if (!token) {
     return res.status(401).json({ error: "Token missing" });
@@ -19,11 +19,12 @@ const verifyToken = (req: Request, res: Response, next: any) => {
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET!);
     if (verified) {
-      console.log("verifiesUser!!!");
+      // console.log("verifiesUser!!!");
       next();
     }
   } catch (error) {
     return res.status(401).json(error);
   }
 };
+
 export default verifyToken;
