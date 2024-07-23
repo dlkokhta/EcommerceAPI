@@ -419,8 +419,8 @@ paths:
         "500":
           description: Internal server error
 
-  /api/verify:
-    put:
+  /api/verify/{param}:
+    post:
       summary: Verify a user
       description: This endpoint verifies a user based on a key passed in the query string.
       requestBody:

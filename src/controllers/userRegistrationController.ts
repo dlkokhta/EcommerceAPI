@@ -42,11 +42,11 @@ const userRegistrationController = async (req: Request, res: Response) => {
     });
 
     userVerify.save();
-
+    console.log("randomString1111", randomString);
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
-      `http://localhost:3000/verify?param=${randomString}`
+      `http://localhost:5173/login/verify?param=${randomString}`
     );
     return res
       .status(201)

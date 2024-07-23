@@ -64,6 +64,6 @@ eCommerceRouter.delete(
   deleteUserbyAdmin
 );
 
-eCommerceRouter.put("/verify", verifyUserController);
+eCommerceRouter.post("/verify/:param", verifyUserController);
 
 export default eCommerceRouter;
