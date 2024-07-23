@@ -13,9 +13,7 @@ const checkEmailVerified = async (
   if (user?.userVerified) {
     next();
   } else {
-    res
-      .status(403)
-      .json({ message: "Please verify your email to access this feature." });
+    res.status(403).json({ message: "Please verify your email to login" });
   }
 };
 

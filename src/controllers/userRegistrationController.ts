@@ -46,7 +46,7 @@ const userRegistrationController = async (req: Request, res: Response) => {
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
-      `http://localhost:5173/login/verify?param=${randomString}`
+      `http://localhost:5173/verify?param=${randomString}`
     );
     return res
       .status(201)

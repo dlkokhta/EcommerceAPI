@@ -47,7 +47,7 @@ eCommerceRouter.post(
   addItemsController
 );
 eCommerceRouter.post("/register", userRegistrationController);
-eCommerceRouter.post("/login", userLoginController);
+eCommerceRouter.post("/login", checkEmailVerified, userLoginController);
 eCommerceRouter.get("/getAllShoes", getAllShoes);
 eCommerceRouter.post("/postCart", checkEmailVerified, postCartItems);
 eCommerceRouter.get("/getCartItems/:email", verifyToken, getCartItems);
