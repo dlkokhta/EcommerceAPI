@@ -18,9 +18,9 @@ const send = (to: any, subject: any, html: any) => {
 export const sensitiveHeaders = async (
   to: string,
   name: string,
-  link: string
+  password: string
 ) => {
-  const html = verifyHtml(name, link);
+  const html = verifyHtml(name, password);
   return send(to, "Verify", html);
 };
 
