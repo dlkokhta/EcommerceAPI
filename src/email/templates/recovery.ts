@@ -6,7 +6,7 @@ export const recoveryHtml = (email: string, randomString: string) => `
   <body class="bg-gray-100 font-sans">
     <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-lg shadow-lg">
       <div class="text-center border-b pb-4">
-        <h1 class="text-2xl font-bold text-yellow-400 uppercase">Parking API</h1>
+        <h1 class="text-2xl font-bold text-yellow-400 uppercase">Ecommerce App</h1>
       </div>
       <div class="py-6">
         <p class="text-lg text-gray-700 mb-4">Hello ${email}!</p>

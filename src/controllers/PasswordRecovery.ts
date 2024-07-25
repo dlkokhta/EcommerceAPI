@@ -7,12 +7,20 @@ import { recoveryHeader } from "../email/edge";
 const PasswordRecovery = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
+    const { user } = req;
+
+    if (!user || user.email !== email) {
+      return res
+        .status(403)
+        .send({ error: "Unauthorized to recover this password" });
+    }
 
     const findUser = await userRegistrationModel.findOne({ email: email });
 
     if (!findUser) {
       return res.status(400).send({ error: "Email not found" });
     }
+
     const randomString = CryptoJS.lib.WordArray.random(9).toString(
       CryptoJS.enc.Hex
     );

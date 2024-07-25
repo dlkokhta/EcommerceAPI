@@ -66,6 +66,6 @@ eCommerceRouter.delete(
 );
 
 eCommerceRouter.post("/verify/:param", verifyUserController);
-eCommerceRouter.post("/recoverPassword", PasswordRecovery);
+eCommerceRouter.post("/recoverPassword", verifyToken, PasswordRecovery);
 
 export default eCommerceRouter;
