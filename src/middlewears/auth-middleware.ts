@@ -17,11 +17,12 @@ const verifyToken = (req: Request, res: Response, next: any) => {
   }
 
   try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET!) as {
-      email: string;
-      userId: string;
-    };
-    req.user = verified;
+    // const verified = jwt.verify(token, process.env.JWT_SECRET!) as {
+    //   email: string;
+    //   userId: string;
+    // };
+    // req.user = verified;
+    const verified = jwt.verify(token, process.env.JWT_SECRET!);
     if (verified) {
       next();
     }

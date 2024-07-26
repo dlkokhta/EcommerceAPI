@@ -33,6 +33,10 @@ const userRegistrationSchema = new Schema<UserRegistrationTypes>({
     type: Boolean,
     default: false,
   },
+  otp: {
+    type: String,
+    default: "",
+  },
 });
 
 const userRegistrationModel = model<UserRegistrationTypes>(

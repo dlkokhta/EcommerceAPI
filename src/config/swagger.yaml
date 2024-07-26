@@ -398,8 +398,8 @@ paths:
 
   /api/recoverPassword:
     post:
-      security:
-        - bearerAuth: []  
+      # security:
+      #   - bearerAuth: []  
       summary: User password recovery
       tags:
         - Authentication
@@ -420,6 +420,31 @@ paths:
           description: Bad request, email is required
         "500":
           description: Internal server error
+
+  /api/OTP:
+    post:
+      # security:
+      #   - bearerAuth: []  
+      summary: GenerateOTP
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The email of the user
+      responses:
+        "200":
+          description: OTP sent
+        "400":
+          description: Bad request, email is required
+        "500":
+          description: Internal server error        
 
   /api/verify/{param}:
     post:

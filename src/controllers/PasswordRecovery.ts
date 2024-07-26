@@ -7,13 +7,13 @@ import { recoveryHeader } from "../email/edge";
 const PasswordRecovery = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
-    const { user } = req;
+    // const { user } = req;
 
-    if (!user || user.email !== email) {
-      return res
-        .status(403)
-        .send({ error: "Unauthorized to recover this password" });
-    }
+    // if (!user || user.email !== email) {
+    //   return res
+    //     .status(403)
+    //     .send({ error: "Unauthorized to recover this password" });
+    // }
 
     const findUser = await userRegistrationModel.findOne({ email: email });
 

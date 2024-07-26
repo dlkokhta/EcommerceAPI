@@ -6,4 +6,5 @@ export interface UserRegistrationTypes {
   role: string;
   id: string;
   userVerified: boolean;
+  otp: string;
 }
