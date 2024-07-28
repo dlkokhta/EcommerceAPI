@@ -6,7 +6,7 @@ import { recoveryHeader } from "../email/edge";
 
 const PasswordRecovery = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
+    const { otp } = req.body;
     // const { user } = req;
 
     // if (!user || user.email !== email) {
@@ -15,24 +15,28 @@ const PasswordRecovery = async (req: Request, res: Response) => {
     //     .send({ error: "Unauthorized to recover this password" });
     // }
 
-    const findUser = await userRegistrationModel.findOne({ email: email });
+    const findUserOTP = await userRegistrationModel.findOne({ otp: otp });
+    console.log("OTP Userrrrr", findUserOTP);
 
-    if (!findUser) {
-      return res.status(400).send({ error: "Email not found" });
+    if (!findUserOTP) {
+      return res.status(400).send({ error: "otp not found" });
     }
 
-    const randomString = CryptoJS.lib.WordArray.random(9).toString(
-      CryptoJS.enc.Hex
-    );
-    console.log("password", randomString);
-    const hashedPassword = await bcrypt.hash(randomString, 10);
-    findUser.password = hashedPassword;
-    await findUser.save();
-    await recoveryHeader(
-      findUser.email,
-      findUser.name,
-      `Your new password is: ${randomString}`
-    );
+    if (findUserOTP.otp === otp) {
+      const randomString = CryptoJS.lib.WordArray.random(9).toString(
+        CryptoJS.enc.Hex
+      );
+      console.log("password", randomString);
+      const hashedPassword = await bcrypt.hash(randomString, 10);
+      findUserOTP.password = hashedPassword;
+      findUserOTP.otp = "";
+      await findUserOTP.save();
+      await recoveryHeader(
+        findUserOTP.email,
+        findUserOTP.name,
+        `Your new password is: ${randomString}`
+      );
+    }
 
     res.send({ message: "A new password has been sent to your email" });
   } catch (error) {

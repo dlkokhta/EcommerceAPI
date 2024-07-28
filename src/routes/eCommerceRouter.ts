@@ -17,7 +17,7 @@ import deleteUserbyAdmin from "../controllers/deleteUserbyAdmin.js";
 import verifyUserController from "../controllers/verifyUserController .js";
 import checkEmailVerified from "../middlewears/emailVerify-auth-middleware.js";
 import PasswordRecovery from "../controllers/PasswordRecovery.js";
-// import GenerateOTP from "../controllers/GenerateOTP.js";
+import GenerateOTP from "../controllers/GenerateOTP.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -68,6 +68,6 @@ eCommerceRouter.delete(
 
 eCommerceRouter.post("/verify/:param", verifyUserController);
 eCommerceRouter.post("/recoverPassword", PasswordRecovery);
-// eCommerceRouter.post("/OTP", GenerateOTP);
+eCommerceRouter.post("/GenerateOTP", GenerateOTP);
 
 export default eCommerceRouter;

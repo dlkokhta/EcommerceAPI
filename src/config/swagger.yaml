@@ -410,18 +410,18 @@ paths:
             schema:
               type: object
               properties:
-                email:
+                otp:
                   type: string
-                  description: The email of the user
+                  description: The otp of the user
       responses:
         "200":
-          description: Password recovery email sent
+          description: otp email sent
         "400":
-          description: Bad request, email is required
+          description: Bad request, otp is required
         "500":
           description: Internal server error
 
-  /api/OTP:
+  /api/GenerateOTP:
     post:
       # security:
       #   - bearerAuth: []  

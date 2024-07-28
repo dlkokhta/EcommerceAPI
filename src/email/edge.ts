@@ -2,6 +2,7 @@ import gmailTransport from "./index.js";
 import dotenv from "dotenv";
 import { verifyHtml } from "./templates/verify.js";
 import { recoveryHtml } from "./templates/recovery.js";
+import { OTPHtml } from "./templates/OTP.js";
 
 dotenv.config();
 
@@ -26,5 +27,10 @@ export const sensitiveHeaders = async (
 
 export const recoveryHeader = async (to: any, email: any, link: any) => {
   const html = recoveryHtml(email, link);
+  return send(to, "Verify", html);
+};
+
+export const otpHeader = async (to: any, email: any, link: any) => {
+  const html = OTPHtml(email, link);
   return send(to, "Verify", html);
 };
