@@ -19,14 +19,14 @@ const PasswordRecovery = async (req: Request, res: Response) => {
     console.log("OTP Userrrrr", findUserOTP);
 
     if (!findUserOTP) {
-      return res.status(400).send({ error: "otp not found" });
+      return res.status(400).send({ message: "wrong otp" });
     }
 
     if (findUserOTP.otp === otp) {
       const randomString = CryptoJS.lib.WordArray.random(9).toString(
         CryptoJS.enc.Hex
       );
-      console.log("password", randomString);
+
       const hashedPassword = await bcrypt.hash(randomString, 10);
       findUserOTP.password = hashedPassword;
       findUserOTP.otp = "";
@@ -40,7 +40,7 @@ const PasswordRecovery = async (req: Request, res: Response) => {
 
     res.send({ message: "A new password has been sent to your email" });
   } catch (error) {
-    res
+    return res
       .status(500)
       .send({ error: "An error occurred while processing your request" });
   }

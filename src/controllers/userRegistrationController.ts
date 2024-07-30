@@ -10,6 +10,7 @@ import { sensitiveHeaders } from "../email/edge.js";
 const userRegistrationController = async (req: Request, res: Response) => {
   try {
     const userData: newUserTypes = req.body;
+
     const validator = await userRegistrationSchema(userData);
 
     const { value, error } = validator.validate(userData);
@@ -17,6 +18,7 @@ const userRegistrationController = async (req: Request, res: Response) => {
     if (error) {
       return res.status(400).send("Email already exist");
     }
+    console.log("errrrrr", error);
 
     const { name, email, role } = value;
 
