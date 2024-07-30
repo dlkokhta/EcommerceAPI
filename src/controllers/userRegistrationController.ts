@@ -52,17 +52,21 @@ const userRegistrationController = async (req: Request, res: Response) => {
     } else {
       url = `http://localhost:5173`;
     }
-
+    console.log("url", url);
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
       `${url}/verify?param=${randomString}`
     );
+
     return res
       .status(201)
       .json({ message: "User registered. Please verify your email." });
   } catch (error) {
-    return res.status(401).json(error);
+    console.error("Error in registration process:", error);
+    return res.status(500).json({
+      error: "An error occurred during registration. Please try again later.",
+    });
   }
 };
 
