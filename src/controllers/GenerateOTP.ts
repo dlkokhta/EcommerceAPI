@@ -6,18 +6,15 @@ import { otpHeader } from "../email/edge";
 const GenerateOTP = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
-    console.log("email recieved", email);
 
     const findUser = await userRegistrationModel.findOne({ email: email });
-
-    console.log("findUser", findUser);
 
     if (!findUser) {
       return res.status(400).send({ message: "Email not found" });
     }
 
     const otp = CryptoJS.lib.WordArray.random(6).toString(CryptoJS.enc.Hex);
-    console.log("typeof otp", typeof otp);
+
     findUser.otp = otp;
     await findUser.save();
 
@@ -26,8 +23,11 @@ const GenerateOTP = async (req: Request, res: Response) => {
       findUser.name,
       `Your new password is: ${otp}`
     );
+    return res.status(200).send({ message: "OTP sent successfully" });
   } catch (error) {
-    return res.status(401).json(error);
+    return res.status(500).json({
+      message: "An error occurred while generating the OTP",
+    });
   }
 };
 
