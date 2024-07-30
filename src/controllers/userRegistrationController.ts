@@ -46,16 +46,10 @@ const userRegistrationController = async (req: Request, res: Response) => {
     userVerify.save();
     console.log("randomString1111", randomString);
 
-    let url;
-    if (process.env.NODE_ENV === "production") {
-      url = `https://ecommerceapi-production-7d9c.up.railway.app`;
-    } else {
-      url = `http://localhost:3000`;
-    }
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
-      `${url}/api/verify?param=${randomString}`
+      `http://localhost:5173/api/verify?param=${randomString}`
     );
     return res
       .status(201)
