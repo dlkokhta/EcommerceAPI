@@ -66,7 +66,7 @@ eCommerceRouter.delete(
   deleteUserbyAdmin
 );
 
-eCommerceRouter.post("/verify/:param", verifyUserController);
+eCommerceRouter.post("/verify", verifyUserController);
 eCommerceRouter.post("/recoverPassword", PasswordRecovery);
 eCommerceRouter.post("/GenerateOTP", GenerateOTP);
 

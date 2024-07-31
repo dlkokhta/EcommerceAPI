@@ -48,15 +48,15 @@ const userRegistrationController = async (req: Request, res: Response) => {
 
     let url;
     if (process.env.NODE_ENV === "production") {
-      url = `https://ecommerce-front-end-five.vercel.app/verify`;
+      url = `https://ecommerce-front-end-five.vercel.app`;
     } else {
-      url = `http://localhost:5173/verify`;
+      url = `http://localhost:5173`;
     }
     console.log("url", url);
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
-      `${url}/?param=${randomString}`
+      `${url}/verify?param=${randomString}`
     );
 
     return res

@@ -4,8 +4,8 @@ import userverifyModel from "../models/userVerifyModel";
 
 const verifyUserController = async (req: Request, res: Response) => {
   try {
-    const { param } = req.params;
-
+    const { param } = req.body;
+    console.log("paramm", param);
     const verificationRecord = await userverifyModel.findOne({
       randomString: param,
     });
