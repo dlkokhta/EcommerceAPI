@@ -26,7 +26,6 @@ const postCartItems = async (req: Request, res: Response) => {
     }
     res.status(200).json({ message: "Cart item added successfully" });
   } catch (error) {
-    // console.error("Error adding cart item:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

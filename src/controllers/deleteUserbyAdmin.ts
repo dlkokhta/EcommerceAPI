@@ -4,7 +4,6 @@ import userRegistrationModel from "../models/userRegistrationModel";
 const deleteUserbyAdmin = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log("iddddd", id);
 
     await userRegistrationModel.deleteOne({ id: id });
 

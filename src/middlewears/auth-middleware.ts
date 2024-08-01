@@ -10,7 +10,6 @@ const verifyToken = (req: Request, res: Response, next: any) => {
   }
 
   let token = authorization.split(" ")[1];
-  console.log("token1111", token);
 
   if (!token) {
     return res.status(401).json({ error: "Token missing" });

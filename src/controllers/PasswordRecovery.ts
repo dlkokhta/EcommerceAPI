@@ -16,7 +16,6 @@ const PasswordRecovery = async (req: Request, res: Response) => {
     // }
 
     const findUserOTP = await userRegistrationModel.findOne({ otp: otp });
-    console.log("OTP Userrrrr", findUserOTP);
 
     if (!findUserOTP) {
       return res.status(400).send({ message: "wrong otp" });

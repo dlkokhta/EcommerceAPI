@@ -18,7 +18,6 @@ const userRegistrationController = async (req: Request, res: Response) => {
     if (error) {
       return res.status(400).send("Email already exist");
     }
-    console.log("errrrrr", error);
 
     const { name, email, role } = value;
 
@@ -44,7 +43,6 @@ const userRegistrationController = async (req: Request, res: Response) => {
     });
 
     userVerify.save();
-    console.log("randomString1111", randomString);
 
     let url;
     if (process.env.NODE_ENV === "production") {

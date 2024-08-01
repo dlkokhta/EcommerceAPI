@@ -5,7 +5,6 @@ const getAllShoes = async (_: Request, res: Response) => {
   try {
     const allShoes = await addItemModel.find();
 
-    // res.send(allShoes);
     res.status(200).json(allShoes);
   } catch (error) {
     res.status(400).json(error);
