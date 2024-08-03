@@ -3,10 +3,17 @@ import { Request, Response } from "express";
 import addItemsSchema from "schemas/addItemsSchema";
 
 const addItemsController = async (req: Request, res: Response) => {
-  const { files, body } = req;
-
   try {
-    const validator = addItemsSchema.validate(body);
+    const { files, body } = req;
+
+    const sizesString = body.sizes;
+
+    const sizes = JSON.parse(`[${sizesString}]`);
+
+    console.log("sizes", sizes);
+    console.log(typeof sizes);
+
+    const validator = addItemsSchema.validate({ ...body, sizes });
 
     const { error } = validator;
 
@@ -26,7 +33,7 @@ const addItemsController = async (req: Request, res: Response) => {
 
     const newItem = new addItemModel({
       ...body,
-      sizes: body.sizes.split(","),
+      sizes: sizes,
       image: imageFilenames,
       availability: true,
     });

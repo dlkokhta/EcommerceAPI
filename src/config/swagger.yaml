@@ -86,7 +86,7 @@ paths:
     post:
       security:
         - bearerAuth: []
-      summary: add a new item
+      summary: Add a new item
       description: This endpoint allows you to create a new item.
       tags:
         - Add Item
@@ -99,27 +99,59 @@ paths:
               properties:
                 brand:
                   type: string
-                  description: The title of the item
+                  description: The brand of the item
                 model:
                   type: string
-                  description: The description of the item
+                  description: The model of the item
                 gender:
                   type: string
-                  description: The gender of the item
+                  description: The gender for which the item is intended
                 color:
                   type: string
                   description: The color of the item
                 description:
                   type: string
-                  description: The content of the item
+                  description: A detailed description of the item
                 price:
                   type: number
                   description: The price of the item
                 sizes:
                   type: array
                   items:
+                    type: object
+                    properties:
+                      size:
+                        type: string
+                        description: The size of the item
+                      quantity:
+                        type: integer
+                        description: The quantity of the item available in that size
+                  description: Array of objects where each object contains a `size` and `quantity`
+                image:
+                  type: array
+                  items:
                     type: string
-                  description: Array of sizes available for the item
+                    format: binary
+                  description: Array of image files for the item (accepted formats: png, jpg, jpeg)
+      responses:
+        "201":
+          description: Item created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+  
+
+
+
                 # availability:
                 #   type: boolean
                 #   description: The availability of the item
