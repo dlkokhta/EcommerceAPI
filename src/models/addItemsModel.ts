@@ -4,16 +4,16 @@ import { v4 as uuidv4 } from "uuid";
 
 const { String } = Schema.Types;
 
-// const sizeSchema = new Schema({
-//   size: {
-//     type: String,
-//     required: true,
-//   },
-//   quantity: {
-//     type: Number,
-//     required: true,
-//   },
-// });
+const sizeSchema = new Schema({
+  size: {
+    type: String,
+    required: true,
+  },
+  quantity: {
+    type: String,
+    required: true,
+  },
+});
 
 const addItemShema = new Schema<addItemsTypes>({
   brand: {
@@ -46,7 +46,7 @@ const addItemShema = new Schema<addItemsTypes>({
     required: true,
   },
   sizes: {
-    type: [],
+    type: [sizeSchema],
   },
   availability: {
     type: Boolean,

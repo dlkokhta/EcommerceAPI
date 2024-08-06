@@ -12,7 +12,7 @@ const addItemsSchema = Joi.object<addItemsTypes>({
     .items(
       Joi.object({
         size: Joi.string().required(),
-        quantity: Joi.number().integer().min(0).required(),
+        quantity: Joi.string().min(0).required(),
       })
     )
     .required(),

@@ -5,13 +5,10 @@ import addItemsSchema from "schemas/addItemsSchema";
 const addItemsController = async (req: Request, res: Response) => {
   try {
     const { files, body } = req;
-
+    console.log("quantity", typeof body.quantity);
     const sizesString = body.sizes;
 
     const sizes = JSON.parse(`[${sizesString}]`);
-
-    console.log("sizes", sizes);
-    console.log(typeof sizes);
 
     const validator = addItemsSchema.validate({ ...body, sizes });
 

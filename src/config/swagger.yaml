@@ -124,7 +124,7 @@ paths:
                         type: string
                         description: The size of the item
                       quantity:
-                        type: integer
+                        type: string
                         description: The quantity of the item available in that size
                   description: Array of objects where each object contains a `size` and `quantity`
                 image:
@@ -557,3 +557,45 @@ paths:
                     example: Invalid token
         "500":
           description: Internal server error
+  
+  path:
+  /api/purchased:
+    post:
+      tags:
+        - purchased
+      summary: purchased
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The ID of the user
+                  example: "example@mail.com"
+                cartItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      itemId:
+                        type: string
+                        description: The ID of the item to be added to cart
+                        example: "789012"
+                      size:
+                        type: string
+                        description: The size of the item to be added to cart
+                        example: "10"
+                      quantity:
+                        type: string
+                        description: The quantity of the item to be added to cart
+                        example: "1"
+      responses:
+        "200":
+          description: Item added successfully
+        "401":
+          description: Unauthorized - Title not found or item already exists
+
+

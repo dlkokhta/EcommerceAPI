@@ -1,3 +1,8 @@
+interface Size {
+  size: string;
+  quantity: string;
+}
+
 export interface addItemsTypes {
   brand: string;
   model: string;
@@ -6,7 +11,7 @@ export interface addItemsTypes {
   color: string;
   description: string;
   price: number;
-  sizes: any;
+  sizes: Size[];
   availability: boolean;
   image: string[];
   id: string;
