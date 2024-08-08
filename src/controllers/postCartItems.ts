@@ -1,12 +1,25 @@
 import { Request, Response } from "express";
 import cartItemsModel from "../models/cartItemsModel.js";
+import addItemModel from "../models/addItemsModel.js";
 
 const postCartItems = async (req: Request, res: Response) => {
-  const { email, cartItems } = req.body;
-
-  const { itemId, size, quantity } = cartItems[0];
-
   try {
+    const { email, cartItems } = req.body;
+    const { itemId, size, quantity } = cartItems[0];
+    let shoes = await addItemModel.findOne({ id: itemId });
+
+    const findSize = shoes?.sizes.find((item: any) => item.size === size);
+
+    const findQuantityToNumber = Number(findSize?.quantity); //recieved quantity
+    const quantityToNumber = Number(quantity);
+
+    if (quantityToNumber > findQuantityToNumber) {
+      return res.status(400).json({
+        message: "this size available",
+        findQuantityToNumber,
+      });
+    }
+
     let cartItem = await cartItemsModel.findOne({ email: email });
 
     if (cartItem) {

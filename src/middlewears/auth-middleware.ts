@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 
 const verifyToken = (req: Request, res: Response, next: any) => {
   const { authorization } = req.headers;
-  console.log("authorization!", authorization);
 
   if (!authorization) {
     return res.status(401).json({ error: "Authorization header missing" });

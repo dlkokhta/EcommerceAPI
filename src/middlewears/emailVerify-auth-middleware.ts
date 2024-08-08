@@ -7,7 +7,7 @@ const checkEmailVerified = async (
   next: NextFunction
 ) => {
   const userEmail = req.body["email"] as string;
-  console.log("userEmail", userEmail);
+
   const user = await userRegistrationModel.findOne({ email: userEmail });
 
   if (user?.userVerified) {

@@ -21,7 +21,7 @@ const PurchasedShoes = async (req: Request, res: Response) => {
     }
 
     const sizesQuanty = parseInt(findSize.quantity);
-
+    console.log("cartItems size", findSize);
     const recievedQuantity = parseInt(quantity);
 
     const finalQuantity = sizesQuanty - recievedQuantity;
@@ -32,7 +32,6 @@ const PurchasedShoes = async (req: Request, res: Response) => {
 
     findSize.quantity = finalQuantity.toString();
 
-    console.log("findSize.quantity", findSize.quantity);
     await shoes.save();
 
     let cartItem = await purchasedShoesModel.findOne({ email: email });

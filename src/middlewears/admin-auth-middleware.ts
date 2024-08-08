@@ -3,14 +3,12 @@ import { Request, Response } from "express";
 
 const adminVerifyToken = (req: Request, res: Response, next: any) => {
   const { authorization } = req.headers;
-  console.log("authorization!", authorization);
 
   if (!authorization) {
     return res.status(401).json({ error: "Authorization header missing" });
   }
 
   let token = authorization.split(" ")[1];
-  console.log("token", token);
 
   if (!token) {
     return res.status(401).json({ error: "Token missing" });
