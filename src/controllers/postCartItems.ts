@@ -11,11 +11,10 @@ const postCartItems = async (req: Request, res: Response) => {
     const findSize = shoes?.sizes.find((item: any) => item.size === size);
 
     const findQuantityToNumber = Number(findSize?.quantity); //recieved quantity
-    const quantityToNumber = Number(quantity);
 
-    if (quantityToNumber > findQuantityToNumber) {
+    if (findQuantityToNumber < quantity) {
       return res.status(400).json({
-        message: "this size available",
+        message: "available only ",
         findQuantityToNumber,
       });
     }
@@ -37,7 +36,9 @@ const postCartItems = async (req: Request, res: Response) => {
 
       await cartItem.save();
     }
-    res.status(200).json({ message: "Cart item added successfully" });
+    res.status(200).json({
+      message: "Cart item added successfully",
+    });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }

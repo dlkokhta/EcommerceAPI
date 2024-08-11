@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import purchasedShoesModel from "../models/purchasedShoesModel";
 import addItemModel from "models/addItemsModel";
+import cartItemsModel from "models/cartItemsModel";
 
 const PurchasedShoes = async (req: Request, res: Response) => {
   const { email, cartItems } = req.body;
@@ -21,7 +22,7 @@ const PurchasedShoes = async (req: Request, res: Response) => {
     }
 
     const sizesQuanty = parseInt(findSize.quantity);
-    console.log("cartItems size", findSize);
+
     const recievedQuantity = parseInt(quantity);
 
     const finalQuantity = sizesQuanty - recievedQuantity;
@@ -35,6 +36,8 @@ const PurchasedShoes = async (req: Request, res: Response) => {
     await shoes.save();
 
     let cartItem = await purchasedShoesModel.findOne({ email: email });
+
+    await cartItemsModel.deleteOne({ email: email });
 
     if (cartItem) {
       cartItem.cartItems.push({
