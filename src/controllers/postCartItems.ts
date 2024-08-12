@@ -22,11 +22,20 @@ const postCartItems = async (req: Request, res: Response) => {
     let cartItem = await cartItemsModel.findOne({ email: email });
 
     if (cartItem) {
-      cartItem.cartItems.push({
-        itemId: itemId,
-        size: size,
-        quantity: quantity,
-      });
+      const itemIndex = cartItem.cartItems.findIndex(
+        (item) => item.itemId === itemId && item.size === size
+      );
+
+      if (itemIndex !== -1) {
+        cartItem.cartItems[itemIndex].quantity += quantity;
+      } else {
+        cartItem.cartItems.push({
+          itemId: itemId,
+          size: size,
+          quantity: quantity,
+        });
+      }
+
       await cartItem.save();
     } else {
       cartItem = new cartItemsModel({
@@ -36,6 +45,22 @@ const postCartItems = async (req: Request, res: Response) => {
 
       await cartItem.save();
     }
+
+    // if (cartItem) {
+    //   cartItem.cartItems.push({
+    //     itemId: itemId,
+    //     size: size,
+    //     quantity: quantity,
+    //   });
+    //   await cartItem.save();
+    // } else {
+    //   cartItem = new cartItemsModel({
+    //     email: email,
+    //     cartItems: [{ itemId: itemId, size: size, quantity: quantity }],
+    //   });
+
+    //   await cartItem.save();
+    // }
     res.status(200).json({
       message: "Cart item added successfully",
     });
