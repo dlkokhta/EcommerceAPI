@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import { purchasedShoesTypes } from "../types/purchasedShoesTypes";
 import { v4 as uuid } from "uuid";
+import { string } from "joi";
 
 const { String } = Schema.Types;
 
@@ -17,6 +18,11 @@ const purchasedShoesSchema = new Schema<purchasedShoesTypes>({
   },
   cartItems: {
     type: [items],
+    required: true,
+  },
+
+  totalAmount: {
+    type: String,
     required: true,
   },
 

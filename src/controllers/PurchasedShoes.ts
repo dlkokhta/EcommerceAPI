@@ -4,7 +4,7 @@ import addItemModel from "models/addItemsModel";
 import cartItemsModel from "models/cartItemsModel";
 
 const PurchasedShoes = async (req: Request, res: Response) => {
-  const { email, cartItems } = req.body;
+  const { email, cartItems, totalAmount } = req.body;
 
   const { itemId, size, quantity } = cartItems[0];
 
@@ -49,7 +49,14 @@ const PurchasedShoes = async (req: Request, res: Response) => {
     } else {
       cartItem = new purchasedShoesModel({
         email: email,
-        cartItems: [{ itemId: itemId, size: size, quantity: quantity }],
+        cartItems: [
+          {
+            itemId: itemId,
+            size: size,
+            quantity: quantity,
+          },
+        ],
+        totalAmount: totalAmount,
       });
 
       await cartItem.save();

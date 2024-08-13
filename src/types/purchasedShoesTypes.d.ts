@@ -6,5 +6,6 @@ interface cartItems {
 export interface purchasedShoesTypes {
   email: string;
   cartItems: cartItems[];
+  totalAmount: string;
   id: string;
 }

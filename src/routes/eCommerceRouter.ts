@@ -20,6 +20,7 @@ import PasswordRecovery from "../controllers/PasswordRecovery.js";
 import GenerateOTP from "../controllers/GenerateOTP.js";
 import PasswordReset from "../controllers/PasswordReset.js";
 import PurchasedShoes from "../controllers/PurchasedShoes.js";
+import PurchasedGet from "../controllers/PurchasedGet.js";
 
 const fileStorage = multer.diskStorage({
   destination: (_, _file, cb) => {
@@ -72,5 +73,6 @@ eCommerceRouter.post("/recoverPassword", PasswordRecovery);
 eCommerceRouter.post("/GenerateOTP", GenerateOTP);
 eCommerceRouter.post("/resetPassword", PasswordReset);
 eCommerceRouter.post("/purchased", PurchasedShoes);
+eCommerceRouter.get("/purchaseGet/:email", verifyToken, PurchasedGet);
 
 export default eCommerceRouter;

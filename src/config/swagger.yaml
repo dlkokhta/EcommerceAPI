@@ -592,10 +592,44 @@ paths:
                         type: string
                         description: The quantity of the item to be added to cart
                         example: "1"
+                totalAmount:
+                  type: string
+                  description: Purchased shoes total amount
+                  example: "1"        
+
       responses:
         "200":
           description: Item added successfully
         "401":
           description: Unauthorized - Title not found or item already exists
+  
 
+  /api/purchaseGet/{email}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Get purchased Items
+      summary: Get purchased Items
+      description: This endpoint allows you to get purchased items.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          description: The email of the blog
+          schema:
+            type: string
+      responses:
+        "200":
+          description: items ogs retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The success message
+        "500":
+          description: Internal server error
 
