@@ -35,31 +35,21 @@ const PurchasedShoes = async (req: Request, res: Response) => {
 
     await shoes.save();
 
-    let cartItem = await purchasedShoesModel.findOne({ email: email });
-
     await cartItemsModel.deleteOne({ email: email });
 
-    if (cartItem) {
-      cartItem.cartItems.push({
-        itemId: itemId,
-        size: size,
-        quantity: quantity,
-      });
-      await cartItem.save();
+    let purchasedItems = await purchasedShoesModel.findOne({ email: email });
+
+    if (purchasedItems) {
+      purchasedItems.cartItems = [...purchasedItems.cartItems, ...cartItems];
+      purchasedItems.totalAmount = totalAmount;
+      await purchasedItems.save();
     } else {
-      cartItem = new purchasedShoesModel({
+      purchasedItems = new purchasedShoesModel({
         email: email,
-        cartItems: [
-          {
-            itemId: itemId,
-            size: size,
-            quantity: quantity,
-          },
-        ],
+        cartItems: cartItems,
         totalAmount: totalAmount,
       });
-
-      await cartItem.save();
+      await purchasedItems.save();
     }
     res.status(200).json({ message: "user purchase added successfully" });
   } catch (error) {

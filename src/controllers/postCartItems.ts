@@ -46,21 +46,6 @@ const postCartItems = async (req: Request, res: Response) => {
       await cartItem.save();
     }
 
-    // if (cartItem) {
-    //   cartItem.cartItems.push({
-    //     itemId: itemId,
-    //     size: size,
-    //     quantity: quantity,
-    //   });
-    //   await cartItem.save();
-    // } else {
-    //   cartItem = new cartItemsModel({
-    //     email: email,
-    //     cartItems: [{ itemId: itemId, size: size, quantity: quantity }],
-    //   });
-
-    //   await cartItem.save();
-    // }
     res.status(200).json({
       message: "Cart item added successfully",
     });

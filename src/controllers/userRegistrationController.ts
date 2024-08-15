@@ -50,7 +50,7 @@ const userRegistrationController = async (req: Request, res: Response) => {
     } else {
       url = `http://localhost:5173`;
     }
-    console.log("url", url);
+
     await sensitiveHeaders(
       newUser.email,
       newUser.name,
