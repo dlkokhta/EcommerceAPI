@@ -71,8 +71,8 @@ eCommerceRouter.delete(
 eCommerceRouter.post("/verify", verifyUserController);
 eCommerceRouter.post("/recoverPassword", PasswordRecovery);
 eCommerceRouter.post("/GenerateOTP", GenerateOTP);
-eCommerceRouter.post("/resetPassword", PasswordReset);
-eCommerceRouter.post("/purchased", PurchasedShoes);
+eCommerceRouter.post("/resetPassword", verifyToken, PasswordReset);
+eCommerceRouter.post("/purchased", verifyToken, PurchasedShoes);
 eCommerceRouter.get("/purchaseGet/:email", verifyToken, PurchasedGet);
 
 export default eCommerceRouter;

@@ -8,13 +8,13 @@ import { userLoginTypes } from "types/userLoginTypes";
 const userLoginController = async (req: Request, res: Response) => {
   try {
     const userData: userLoginTypes = req.body;
-
+    // console.log("userDataa", userData);
     const { error } = userLoginSchema.validate(userData);
 
     if (error) {
       return res.status(401).json("Email or password is incorrect.");
     }
-
+    console.log("isPasswordCorrect");
     const user = await userRegistrationModel
       .findOne({ email: userData.email })
       .select("+password");

@@ -518,6 +518,8 @@ paths:
   paths:
   /api/resetPassword:
     post:
+      security:
+        - bearerAuth: []
       summary: Reset user password
       tags:
         - Authentication
@@ -561,6 +563,8 @@ paths:
   path:
   /api/purchased:
     post:
+      security:
+        - bearerAuth: []  
       tags:
         - purchased
       summary: purchased

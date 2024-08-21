@@ -22,7 +22,7 @@ const PasswordRecovery = async (req: Request, res: Response) => {
     }
 
     if (findUserOTP.otp === otp) {
-      const randomString = CryptoJS.lib.WordArray.random(9).toString(
+      const randomString = CryptoJS.lib.WordArray.random(7).toString(
         CryptoJS.enc.Hex
       );
 

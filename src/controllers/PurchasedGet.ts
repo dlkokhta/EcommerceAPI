@@ -4,7 +4,7 @@ import purchasedShoesModel from "../models/purchasedShoesModel";
 const PurchasedGet = async (_req: Request, res: Response) => {
   try {
     const purchasedShoes = await purchasedShoesModel.find();
-    console.log("purchasedShoes", purchasedShoes);
+
     res.send(purchasedShoes);
   } catch (error) {
     res.status(400).json(error);
