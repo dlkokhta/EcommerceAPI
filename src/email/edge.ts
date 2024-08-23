@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { verifyHtml } from "./templates/verify.js";
 import { recoveryHtml } from "./templates/recovery.js";
 import { OTPHtml } from "./templates/OTP.js";
+import { purchaseConfirmationHtml } from "./templates/purchased.js";
 
 dotenv.config();
 
@@ -27,10 +28,15 @@ export const sensitiveHeaders = async (
 
 export const recoveryHeader = async (to: any, email: any, link: any) => {
   const html = recoveryHtml(email, link);
-  return send(to, "Verify", html);
+  return send(to, "Recovery", html);
 };
 
 export const otpHeader = async (to: any, email: any, link: any) => {
   const html = OTPHtml(email, link);
-  return send(to, "Verify", html);
+  return send(to, "OTP", html);
+};
+
+export const purchaseConfirmationHeader = async (to: any, link: any) => {
+  const html = purchaseConfirmationHtml(link);
+  return send(to, "Purchase", html);
 };

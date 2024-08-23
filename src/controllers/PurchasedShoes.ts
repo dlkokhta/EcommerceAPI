@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import purchasedShoesModel from "../models/purchasedShoesModel";
 import addItemModel from "models/addItemsModel";
 import cartItemsModel from "models/cartItemsModel";
+import { purchaseConfirmationHeader } from "../email/edge.js";
 
 const PurchasedShoes = async (req: Request, res: Response) => {
   const { email, cartItems, totalAmount } = req.body;
@@ -51,6 +52,16 @@ const PurchasedShoes = async (req: Request, res: Response) => {
       });
       await purchasedItems.save();
     }
+
+    let url;
+    if (process.env.NODE_ENV === "production") {
+      url = `https://ecommerce-front-end-five.vercel.app`;
+    } else {
+      url = `http://localhost:5173`;
+    }
+
+    await purchaseConfirmationHeader(email, `${url}/purchase`);
+
     res.status(200).json({ message: "user purchase added successfully" });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });

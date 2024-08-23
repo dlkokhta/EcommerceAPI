@@ -1,4 +1,4 @@
-export const verifyHtml = (name: string, link: string) => `
+export const purchaseConfirmationHtml = (link: any) => `
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,11 +16,11 @@ export const verifyHtml = (name: string, link: string) => `
 </head>
 <body class="bg-gray-500 text-white">
     <div class="container">
-        <div class="header">Verification Email</div>
-        <div class="greeting">Hello ${name}!</div>
-        <div class="message">Thank you for signing up. Please verify your email address by clicking the button below:</div>
-        <a href="${link}" class="button">Verify Email</a>
-        <div class="footer">If you did not request this verification, please ignore this email.</div>
+        <div class="header">Purchase Confirmation</div>
+        <div class="message">Thank you for purchasing shoes from our store. Your order is being processed and will be shipped soon.</div>
+        <a href="${link}" class="button">View Your Order</a>
+        <div class="footer">If you did not make this purchase, please contact our support immediately.</div>
     </div>
+</body>
 </body>
 </html>`;

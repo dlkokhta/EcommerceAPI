@@ -18,11 +18,7 @@ const GenerateOTP = async (req: Request, res: Response) => {
     findUser.otp = otp;
     await findUser.save();
 
-    await otpHeader(
-      findUser.email,
-      findUser.name,
-      `Your new password is: ${otp}`
-    );
+    await otpHeader(findUser.email, findUser.name, ` ${otp}`);
     return res.status(200).send({ message: "OTP sent successfully" });
   } catch (error) {
     return res.status(500).json({
