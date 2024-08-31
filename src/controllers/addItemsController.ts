@@ -39,7 +39,6 @@ const addItemsController = async (req: Request, res: Response) => {
 
     return res.status(200).json({ message: "Item added successfully" });
   } catch (err) {
-    console.error("Error saving item:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
