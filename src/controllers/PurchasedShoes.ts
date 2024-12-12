@@ -53,12 +53,13 @@ const PurchasedShoes = async (req: Request, res: Response) => {
       await purchasedItems.save();
     }
 
-    let url;
-    if (process.env.NODE_ENV === "production") {
-      url = `https://ecommerce-front-end-five.vercel.app`;
-    } else {
-      url = `http://localhost:5173`;
-    }
+    // let url;
+    // if (process.env.NODE_ENV === "production") {
+    //   url = `https://ecommerce-front-end-five.vercel.app`;
+    // } else {
+    //   url = `http://localhost:5173`;
+    // }
+    let url = "https://ecommerce-front-end-five.vercel.app";
 
     await purchaseConfirmationHeader(email, `${url}/purchase`);
 
